@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "GZ+oqq2qukPxv5IF0kGOubVp9Rg8w7GKzLBZyN58Djl1VR7wyDUmAQZ+nPmOcw2mnQdqPKHBv4Y9lTZaSEQhFA==",
+  "dgSpecHash": "fvadnHEqo+WBZo/ZOzSLtWc1VuO+WTM6w80acDR4ut1afsJ7KnnC2PWbjDEh3u+vzqx66K2F5I6JkMaEP6Unag==",
   "success": true,
   "projectFilePath": "/home/cooper/Projects/wgu-ess-app/backend/WGU-ESS.API/tests/WGU-ESS.Fixtures/WGU-ESS.Fixtures.csproj",
   "expectedPackageFiles": [

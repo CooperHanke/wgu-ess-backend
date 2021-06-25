@@ -1872,7 +1872,7 @@
       },
       "WGU-ESS.Domain/1.0.0": {
         "type": "project",
-        "framework": ".NETStandard,Version=v2.1",
+        "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection": "5.0.1"
         },
@@ -1885,7 +1885,7 @@
       },
       "WGU-ESS.Infrastructure/1.0.0": {
         "type": "project",
-        "framework": ".NETStandard,Version=v2.1",
+        "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "5.0.7",
           "Pomelo.EntityFrameworkCore.MySql": "5.0.0",

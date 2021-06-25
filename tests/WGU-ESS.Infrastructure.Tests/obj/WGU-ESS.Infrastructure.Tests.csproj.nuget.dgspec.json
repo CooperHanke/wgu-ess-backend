@@ -17,13 +17,13 @@
           "/home/cooper/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "netstandard2.1"
+          "netcoreapp3.1"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netstandard2.1": {
+          "netcoreapp3.1": {
             "projectReferences": {}
           }
         },
@@ -34,7 +34,7 @@
         }
       },
       "frameworks": {
-        "netstandard2.1": {
+        "netcoreapp3.1": {
           "dependencies": {
             "Microsoft.Extensions.DependencyInjection": {
               "target": "Package",
@@ -52,7 +52,7 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
-            "NETStandard.Library": {
+            "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
@@ -73,13 +73,13 @@
           "/home/cooper/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "netstandard2.1"
+          "netcoreapp3.1"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netstandard2.1": {
+          "netcoreapp3.1": {
             "projectReferences": {
               "/home/cooper/Projects/wgu-ess-app/backend/WGU-ESS.API/src/WGU-ESS.Domain/WGU-ESS.Domain.csproj": {
                 "projectPath": "/home/cooper/Projects/wgu-ess-app/backend/WGU-ESS.API/src/WGU-ESS.Domain/WGU-ESS.Domain.csproj"
@@ -94,7 +94,7 @@
         }
       },
       "frameworks": {
-        "netstandard2.1": {
+        "netcoreapp3.1": {
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -116,7 +116,7 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
-            "NETStandard.Library": {
+            "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },

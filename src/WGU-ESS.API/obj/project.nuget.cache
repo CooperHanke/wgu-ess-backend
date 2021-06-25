@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "nqzggBncAZZmoHY8lxIeLQhUMOF0DjFxUqAFyqrmQqssqM58oVuWzNAKsdmh+QVFG6TJqo41of5cGJBKrMpS3Q==",
+  "dgSpecHash": "nmMi4iziXwcYIDAmTTtIJA9WdIiTwrrvYSOLV8ryhbCCeOjGXLd8tlV0cAvwUc4E/pAGoB+7JfVt553/obtm1Q==",
   "success": true,
   "projectFilePath": "/home/cooper/Projects/wgu-ess-app/backend/WGU-ESS.API/src/WGU-ESS.API/WGU-ESS.API.csproj",
   "expectedPackageFiles": [

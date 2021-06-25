@@ -1,0 +1,9 @@
+/home/cooper/Projects/wgu-ess-app/backend/WGU-ESS.API/src/WGU-ESS.Domain/bin/Debug/netcoreapp3.1/WGU-ESS.Domain.deps.json
+/home/cooper/Projects/wgu-ess-app/backend/WGU-ESS.API/src/WGU-ESS.Domain/bin/Debug/netcoreapp3.1/WGU-ESS.Domain.dll
+/home/cooper/Projects/wgu-ess-app/backend/WGU-ESS.API/src/WGU-ESS.Domain/bin/Debug/netcoreapp3.1/WGU-ESS.Domain.pdb
+/home/cooper/Projects/wgu-ess-app/backend/WGU-ESS.API/src/WGU-ESS.Domain/obj/Debug/netcoreapp3.1/WGU-ESS.Domain.csprojAssemblyReference.cache
+/home/cooper/Projects/wgu-ess-app/backend/WGU-ESS.API/src/WGU-ESS.Domain/obj/Debug/netcoreapp3.1/WGU-ESS.Domain.AssemblyInfoInputs.cache
+/home/cooper/Projects/wgu-ess-app/backend/WGU-ESS.API/src/WGU-ESS.Domain/obj/Debug/netcoreapp3.1/WGU-ESS.Domain.AssemblyInfo.cs
+/home/cooper/Projects/wgu-ess-app/backend/WGU-ESS.API/src/WGU-ESS.Domain/obj/Debug/netcoreapp3.1/WGU-ESS.Domain.csproj.CoreCompileInputs.cache
+/home/cooper/Projects/wgu-ess-app/backend/WGU-ESS.API/src/WGU-ESS.Domain/obj/Debug/netcoreapp3.1/WGU-ESS.Domain.dll
+/home/cooper/Projects/wgu-ess-app/backend/WGU-ESS.API/src/WGU-ESS.Domain/obj/Debug/netcoreapp3.1/WGU-ESS.Domain.pdb
