@@ -1,0 +1,128 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/cooper/Projects/wgu-ess-app/backend/WGU-ESS.API/src/WGU-ESS.Infrastructure/WGU-ESS.Infrastructure.csproj": {}
+  },
+  "projects": {
+    "/home/cooper/Projects/wgu-ess-app/backend/WGU-ESS.API/src/WGU-ESS.Domain/WGU-ESS.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/cooper/Projects/wgu-ess-app/backend/WGU-ESS.API/src/WGU-ESS.Domain/WGU-ESS.Domain.csproj",
+        "projectName": "WGU-ESS.Domain",
+        "projectPath": "/home/cooper/Projects/wgu-ess-app/backend/WGU-ESS.API/src/WGU-ESS.Domain/WGU-ESS.Domain.csproj",
+        "packagesPath": "/home/cooper/.nuget/packages/",
+        "outputPath": "/home/cooper/Projects/wgu-ess-app/backend/WGU-ESS.API/src/WGU-ESS.Domain/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/cooper/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "dependencies": {
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.410/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/cooper/Projects/wgu-ess-app/backend/WGU-ESS.API/src/WGU-ESS.Infrastructure/WGU-ESS.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/cooper/Projects/wgu-ess-app/backend/WGU-ESS.API/src/WGU-ESS.Infrastructure/WGU-ESS.Infrastructure.csproj",
+        "projectName": "WGU-ESS.Infrastructure",
+        "projectPath": "/home/cooper/Projects/wgu-ess-app/backend/WGU-ESS.API/src/WGU-ESS.Infrastructure/WGU-ESS.Infrastructure.csproj",
+        "packagesPath": "/home/cooper/.nuget/packages/",
+        "outputPath": "/home/cooper/Projects/wgu-ess-app/backend/WGU-ESS.API/src/WGU-ESS.Infrastructure/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/cooper/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "projectReferences": {
+              "/home/cooper/Projects/wgu-ess-app/backend/WGU-ESS.API/src/WGU-ESS.Domain/WGU-ESS.Domain.csproj": {
+                "projectPath": "/home/cooper/Projects/wgu-ess-app/backend/WGU-ESS.API/src/WGU-ESS.Domain/WGU-ESS.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.7, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.410/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

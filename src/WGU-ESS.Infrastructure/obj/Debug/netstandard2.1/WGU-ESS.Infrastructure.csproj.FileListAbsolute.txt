@@ -1,0 +1,12 @@
+/home/cooper/Projects/wgu-ess-app/backend/WGU-ESS.API/src/WGU-ESS.Infrastructure/bin/Debug/netstandard2.1/WGU-ESS.Infrastructure.deps.json
+/home/cooper/Projects/wgu-ess-app/backend/WGU-ESS.API/src/WGU-ESS.Infrastructure/bin/Debug/netstandard2.1/WGU-ESS.Infrastructure.dll
+/home/cooper/Projects/wgu-ess-app/backend/WGU-ESS.API/src/WGU-ESS.Infrastructure/bin/Debug/netstandard2.1/WGU-ESS.Infrastructure.pdb
+/home/cooper/Projects/wgu-ess-app/backend/WGU-ESS.API/src/WGU-ESS.Infrastructure/bin/Debug/netstandard2.1/WGU-ESS.Domain.dll
+/home/cooper/Projects/wgu-ess-app/backend/WGU-ESS.API/src/WGU-ESS.Infrastructure/bin/Debug/netstandard2.1/WGU-ESS.Domain.pdb
+/home/cooper/Projects/wgu-ess-app/backend/WGU-ESS.API/src/WGU-ESS.Infrastructure/obj/Debug/netstandard2.1/WGU-ESS.Infrastructure.csprojAssemblyReference.cache
+/home/cooper/Projects/wgu-ess-app/backend/WGU-ESS.API/src/WGU-ESS.Infrastructure/obj/Debug/netstandard2.1/WGU-ESS.Infrastructure.AssemblyInfoInputs.cache
+/home/cooper/Projects/wgu-ess-app/backend/WGU-ESS.API/src/WGU-ESS.Infrastructure/obj/Debug/netstandard2.1/WGU-ESS.Infrastructure.AssemblyInfo.cs
+/home/cooper/Projects/wgu-ess-app/backend/WGU-ESS.API/src/WGU-ESS.Infrastructure/obj/Debug/netstandard2.1/WGU-ESS.Infrastructure.csproj.CoreCompileInputs.cache
+/home/cooper/Projects/wgu-ess-app/backend/WGU-ESS.API/src/WGU-ESS.Infrastructure/obj/Debug/netstandard2.1/WGU-ESS.Infrastructure.csproj.CopyComplete
+/home/cooper/Projects/wgu-ess-app/backend/WGU-ESS.API/src/WGU-ESS.Infrastructure/obj/Debug/netstandard2.1/WGU-ESS.Infrastructure.dll
+/home/cooper/Projects/wgu-ess-app/backend/WGU-ESS.API/src/WGU-ESS.Infrastructure/obj/Debug/netstandard2.1/WGU-ESS.Infrastructure.pdb

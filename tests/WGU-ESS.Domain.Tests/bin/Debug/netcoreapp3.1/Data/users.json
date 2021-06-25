@@ -1,0 +1,35 @@
+[
+    {
+        "Id": "e61044cd-a73a-4786-97f9-e1570cde84c7",
+        "FirstName": "Dana",
+        "LastName": "Wadman",
+        "UserName": "dwadman0",
+        "Password": "KiPycjHQO9",
+        "UsesDarkMode": false,
+        "Type": "Manager",
+        "IsHidden": false,
+        "CreationTime": "2021-06-20T00:00:00"
+    },
+    {
+        "Id": "66da25ef-198e-40b4-997e-af986cabf880",
+        "FirstName": "Dania",
+        "LastName": "Kitteringham",
+        "UserName": "dkitteringham1",
+        "Password": "qMueERH",
+        "UsesDarkMode": false,
+        "Type": "Standard",
+        "IsHidden": false,
+        "CreationTime": "2021-06-20T00:00:00"
+    },
+    {
+        "Id": "1d3fc940-c63a-4951-aabe-3f441297ab52",
+        "FirstName": "Melvin",
+        "LastName": "Zamorrano",
+        "UserName": "mzamorrano2",
+        "Password": "WngOKWG",
+        "UsesDarkMode": true,
+        "Type": "Standard",
+        "IsHidden": false,
+        "CreationTime": "2021-06-20T00:00:00"
+    }
+]
