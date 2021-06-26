@@ -1,5 +1,5 @@
 using System;
-using WGU_ESS.Domain.Entities;
+using System.Text.Json.Serialization;
 
 namespace WGU_ESS.Domain.Responses.User
 {
@@ -9,6 +9,8 @@ namespace WGU_ESS.Domain.Responses.User
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string UserName { get; set; }
+    [JsonIgnore]
+    public string Password { get; set; }
     public string Type { get; set; }
     public bool UsesDarkMode { get; set; }
     public bool IsLocked { get; set; }
