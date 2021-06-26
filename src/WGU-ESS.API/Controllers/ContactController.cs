@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using WGU_ESS.Domain.Requests.Contact;
 using System;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WGU_ESS.API.Controllers
 {
+  [Authorize]
   [ApiController]
   [Route("/api/contacts")]
   public class ContactController : ControllerBase
@@ -18,10 +20,8 @@ namespace WGU_ESS.API.Controllers
     }
 
     [HttpGet]
-    public async Task<IActionResult> Get([FromHeader] Guid userGuid)
+    public async Task<IActionResult> Get()
     {
-      // pass the jwt in the header, and we will know the user and role
-      Console.WriteLine($"Contents of user guid: {userGuid}");
       var result = await _contactService.GetContactsAsync();
       return Ok(result);
     }

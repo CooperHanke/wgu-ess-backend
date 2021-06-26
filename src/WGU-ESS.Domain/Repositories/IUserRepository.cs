@@ -11,5 +11,8 @@ namespace WGU_ESS.Domain.Repositories
     Task<User> GetAsync(Guid id);
     User Add(User user);
     User Update(User user);
+
+    // for authentication
+    Task<User> GetByUserNameAsync(string username);
   }
 }
