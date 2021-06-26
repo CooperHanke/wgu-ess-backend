@@ -11,5 +11,6 @@ namespace WGU_ESS.Domain.Services
     Task<UserResponse> GetUserAsync(GetUserRequest request);
     Task<UserResponse> AddUserAsync(AddUserRequest request);
     Task<UserResponse> EditUserAsync(EditUserRequest request);
+    Task<LoginResponse> AuthenticateUser(SignInRequest request);
   }
 }

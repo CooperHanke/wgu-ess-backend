@@ -51,7 +51,7 @@ namespace WGU_ESS.Domain.Mappers
         FirstName = request.FirstName,
         LastName = request.LastName,
         UserName = request.UserName,
-        Password = request.Password,
+        Password = request.Password, // the password is visible to system, but not in json payload
         Type = request.Type.ToString(),
         UsesDarkMode = request.UsesDarkMode,
         IsLocked = request.IsLocked,

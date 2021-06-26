@@ -16,7 +16,8 @@ namespace WGU_ESS.Domain.Extensions
 
     public static IServiceCollection AddServices(this IServiceCollection services)
     {
-      services.AddScoped<IUserService, UserService>()
+      services
+        .AddScoped<IUserService, UserService>()
         .AddScoped<IContactService, ContactService>()
         .AddScoped<IAppointmentService, AppointmentService>();
       return services;
