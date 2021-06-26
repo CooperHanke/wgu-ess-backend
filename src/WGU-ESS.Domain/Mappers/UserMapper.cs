@@ -51,7 +51,6 @@ namespace WGU_ESS.Domain.Mappers
         FirstName = request.FirstName,
         LastName = request.LastName,
         UserName = request.UserName,
-        Password = request.Password,
         Type = request.Type.ToString(),
         UsesDarkMode = request.UsesDarkMode,
         IsLocked = request.IsLocked,
