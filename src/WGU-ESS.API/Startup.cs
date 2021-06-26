@@ -23,13 +23,13 @@ namespace WGU_ESS.API
     public void ConfigureServices(IServiceCollection services)
     {
       services.AddSystemContext(Configuration.GetSection("Datasource:ConnectionString").Value)
-          .AddScoped<IUserRepository, UserRepository>()
-          .AddScoped<IContactRepository, ContactRepository>()
-          .AddScoped<IAppointmentRepository, AppointmentRepository>()
-          .AddMappers()
-          .AddServices()
-          .AddControllers();
-        }
+        .AddScoped<IUserRepository, UserRepository>()
+        .AddScoped<IContactRepository, ContactRepository>()
+        .AddScoped<IAppointmentRepository, AppointmentRepository>()
+        .AddMappers()
+        .AddServices()
+        .AddControllers();
+      }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

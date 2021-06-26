@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using WGU_ESS.Domain.Requests.User;
 using System;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace WGU_ESS.API.Controllers
 {
@@ -27,7 +28,7 @@ namespace WGU_ESS.API.Controllers
     [HttpGet("{id:guid}")]
     public async Task<IActionResult> GetById(Guid id)
     {
-      var result = await _userService.GetUserAsync(new GetUserRequest { Id = id } );
+      var result = await _userService.GetUserAsync(new GetUserRequest { Id = id });
       return Ok(result);
     }
 
@@ -44,6 +45,22 @@ namespace WGU_ESS.API.Controllers
       request.Id = id;
       var result = await _userService.EditUserAsync(request);
       return Ok(result);
+    }
+
+    // to authenticate
+    [HttpPost("auth")]
+    public async Task<IActionResult> SignIn(SignInRequest request)
+    {
+      var result = await _userService.AuthenticateUser(request);
+      
+      if (result.Token != null)
+      {
+        Console.WriteLine($"Contents of token payload...");
+        Console.WriteLine($"{result.Token}");
+        
+        return Ok(new JwtSecurityTokenHandler().WriteToken(result.Token));
+      }
+      return BadRequest("Invalid credintials");
     }
   }
 }

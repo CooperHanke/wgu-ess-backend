@@ -37,5 +37,11 @@ namespace WGU_ESS.Infrastructure.Repositories
       _context.Entry(user).State = EntityState.Modified;
       return user;
     }
+
+    // for authentication
+    public async Task<User> GetByUserNameAsync(string username)
+    {
+      return await _context.Users.AsNoTracking().Where(x => x.UserName == username).FirstOrDefaultAsync();
+    }
   }
 }

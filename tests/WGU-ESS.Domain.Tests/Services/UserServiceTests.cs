@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 using Shouldly;
 using WGU_ESS.Domain.Entities;
 using WGU_ESS.Domain.Mappers;
@@ -15,6 +16,7 @@ namespace WGU_ESS.Domain.Tests.Services
   {
     private readonly UserRepository _userRepository;
     private readonly IUserMapper _userMapper;
+    private readonly IConfiguration _configuration;
 
     public UserServiceTests(SystemContextFactory systemContextFactory)
     {
@@ -22,10 +24,23 @@ namespace WGU_ESS.Domain.Tests.Services
       _userMapper = systemContextFactory.UserMapper;
     }
 
+    // authenticate user and ensure we have a jwt
+
+    // [Fact]
+    // public async Task logging_in_should_return_jwt()
+    // {
+    //   UserService sut = new UserService(_userRepository, _userMapper, _configuration);
+    //   var result = await sut.AuthenticateUser(new SignInRequest
+    //   {
+    //     UserName = "",
+    //     Password = ""
+    //   });
+    // }
+
     [Fact]
     public async Task get_users_should_return_correct_data()
     {
-      UserService sut = new UserService(_userRepository, _userMapper);
+      UserService sut = new UserService(_userRepository, _userMapper, _configuration);
       var result = await sut.GetUsersAsync();
       result.ShouldNotBeNull();
     }
@@ -34,7 +49,7 @@ namespace WGU_ESS.Domain.Tests.Services
     [InlineData("e61044cd-a73a-4786-97f9-e1570cde84c7")]
     public async Task get_user_by_id_should_return_correct_user(string guid)
     {
-      UserService sut = new UserService(_userRepository, _userMapper);
+      UserService sut = new UserService(_userRepository, _userMapper, _configuration);
       var result = await sut.GetUserAsync(new GetUserRequest { Id = new Guid(guid)} );
       result.Id.ShouldBe(new Guid(guid));
     }
@@ -42,7 +57,7 @@ namespace WGU_ESS.Domain.Tests.Services
     [Fact]
     public void get_user_should_throw_exception_with_null_id()
     {
-      UserService sut = new UserService(_userRepository, _userMapper);
+      UserService sut = new UserService(_userRepository, _userMapper, _configuration);
       sut.GetUserAsync(null).ShouldThrow<ArgumentNullException>();
     }
 
@@ -59,7 +74,7 @@ namespace WGU_ESS.Domain.Tests.Services
         UsesDarkMode = false
       };
 
-      UserService sut = new UserService(_userRepository, _userMapper);
+      UserService sut = new UserService(_userRepository, _userMapper, _configuration);
       var result = await sut.AddUserAsync(test_user);
       result.FirstName.ShouldBe(test_user.FirstName);
       result.LastName.ShouldBe(test_user.LastName);
@@ -83,7 +98,7 @@ namespace WGU_ESS.Domain.Tests.Services
         UsesDarkMode = false
       };
 
-      UserService sut = new UserService(_userRepository, _userMapper);
+      UserService sut = new UserService(_userRepository, _userMapper, _configuration);
       var result = await sut.EditUserAsync(test_user);
       result.FirstName.ShouldBe(test_user.FirstName);
       result.LastName.ShouldBe(test_user.LastName);
