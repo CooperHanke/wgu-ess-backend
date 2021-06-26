@@ -95,17 +95,18 @@ namespace WGU_ESS.Domain.Services
       var response = new LoginResponse { Token = null, Status = "Failure" };
 
       var user = await _userRepository.GetByUserNameAsync(request.UserName);
+      
       if (user != null && PasswordMatches(user.Password, request.Password))
       {
         var claims = new[] {
             new Claim(JwtRegisteredClaimNames.Sub, _configuration["Jwt:Subject"]),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
-            new Claim("Id", user.UserName),
+            new Claim("UserId", user.Id.ToString()),
             new Claim("FirstName", user.FirstName),
             new Claim("LastName", user.LastName),
             new Claim("UserName", user.UserName),
-            new Claim("UserType", user.Type.ToString())
+            new Claim("roles", user.Type.ToString())
           };
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));

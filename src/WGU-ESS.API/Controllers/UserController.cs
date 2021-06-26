@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using WGU_ESS.Domain.Requests.User;
 using System;
 using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WGU_ESS.API.Controllers
 {
@@ -18,6 +19,7 @@ namespace WGU_ESS.API.Controllers
       _userService = userService;
     }
 
+    [Authorize(Roles = "Manager")] // only managers should be able to get all users, in order to manage them
     [HttpGet]
     public async Task<IActionResult> Get()
     {
@@ -25,6 +27,7 @@ namespace WGU_ESS.API.Controllers
       return Ok(result);
     }
 
+    [Authorize]
     [HttpGet("{id:guid}")]
     public async Task<IActionResult> GetById(Guid id)
     {
@@ -32,6 +35,7 @@ namespace WGU_ESS.API.Controllers
       return Ok(result);
     }
 
+    [Authorize]
     [HttpPost]
     public async Task<IActionResult> Post(AddUserRequest request)
     {
@@ -39,6 +43,7 @@ namespace WGU_ESS.API.Controllers
       return CreatedAtAction(nameof(GetById), new { id = result.Id }, null);
     }
 
+    [Authorize]
     [HttpPut("{id:guid}")]
     public async Task<IActionResult> Put(Guid id, EditUserRequest request)
     {
@@ -55,9 +60,6 @@ namespace WGU_ESS.API.Controllers
       
       if (result.Token != null)
       {
-        Console.WriteLine($"Contents of token payload...");
-        Console.WriteLine($"{result.Token}");
-        
         return Ok(new JwtSecurityTokenHandler().WriteToken(result.Token));
       }
       return BadRequest("Invalid credintials");
