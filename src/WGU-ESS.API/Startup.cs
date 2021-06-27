@@ -53,6 +53,17 @@ namespace WGU_ESS.API
           IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
         };
       });
+      services.AddCors(x =>
+      {
+        x.AddPolicy("VueCorsPolicy", builder =>
+        {
+          builder
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials()
+            .WithOrigins("https://localhost:8085", "https://localhost:8085/login");
+        });
+      });
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,6 +72,7 @@ namespace WGU_ESS.API
       if (env.IsDevelopment())
       {
         app.UseDeveloperExceptionPage();
+        app.UseCors("VueCorsPolicy");
       }
 
       app.UseHttpsRedirection();
