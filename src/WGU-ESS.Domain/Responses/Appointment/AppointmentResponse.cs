@@ -10,13 +10,13 @@ namespace WGU_ESS.Domain.Responses.Appointment
     public string Location { get; set; }
     public string Type { get; set; }
     public string Url { get; set; }
-    public DateTime StartDate { get; set; }
-    public DateTime EndDate { get; set; }
+    public string StartDate { get; set; }
+    public string EndDate { get; set; }
     public bool IsHidden { get; set; }
     public bool NeedReminder { get; set; }
     public Guid ContactId { get; set; }
     public Guid UserId { get; set; }
-    public DateTime CreationTime { get; set; }
-    public DateTime ModificationTime { get; set; }
+    public string CreationTime { get; set; }
+    public string ModificationTime { get; set; }
   }
 }

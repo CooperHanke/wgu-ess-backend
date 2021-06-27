@@ -56,8 +56,8 @@ namespace WGU_ESS.Domain.Mappers
         UsesDarkMode = request.UsesDarkMode,
         IsLocked = request.IsLocked,
         IsHidden = request.IsHidden,
-        CreationTime = request.CreationTime,
-        ModificationTime = request.ModificationTime
+        CreationTime = request.CreationTime.ToString("yyyy-MM-ddTHH:mm:ssZ"),
+        ModificationTime = request.ModificationTime.ToString("yyyy-MM-ddTHH:mm:ssZ")
       };
       return response;
     }
