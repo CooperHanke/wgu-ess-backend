@@ -89,7 +89,7 @@ namespace WGU_ESS.API.Controllers
 
       if (result.Token != null)
       {
-        return Ok(new JwtSecurityTokenHandler().WriteToken(result.Token));
+        return Ok(result);
       }
       return BadRequest("Invalid credintials");
     }

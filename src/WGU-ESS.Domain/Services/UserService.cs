@@ -92,7 +92,7 @@ namespace WGU_ESS.Domain.Services
 
     public async Task<LoginResponse> AuthenticateUser(SignInRequest request)
     {
-      var response = new LoginResponse { Token = null, Status = "Failure" };
+      var response = new LoginResponse { Token = null, Status = "Failure", UserId = null };
 
       var user = await _userRepository.GetByUserNameAsync(request.UserName);
       
@@ -113,12 +113,15 @@ namespace WGU_ESS.Domain.Services
 
         var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-        response.Token = new JwtSecurityToken(
+        var token = new JwtSecurityToken(
             _configuration["Jwt:Issuer"],
             _configuration["Jwt:Audience"],
             claims,
             expires: DateTime.UtcNow.AddDays(1),
             signingCredentials: signIn);
+
+        response.Token = new JwtSecurityTokenHandler().WriteToken(token);
+        response.UserId = user.Id.ToString();
         response.Status = "Success";
       }
 
