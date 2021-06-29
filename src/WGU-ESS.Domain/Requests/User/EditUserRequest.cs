@@ -13,6 +13,7 @@ namespace WGU_ESS.Domain.Requests.User
     public string Password { get; set; }
     public bool UsesDarkMode { get; set; }
     public bool IsLocked { get; set; }
+    public bool NeedPasswordReset { get; set; }
     public bool IsHidden { get; set; }
   }
 }
