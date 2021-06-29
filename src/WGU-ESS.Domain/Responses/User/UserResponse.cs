@@ -15,7 +15,7 @@ namespace WGU_ESS.Domain.Responses.User
     public bool UsesDarkMode { get; set; }
     public bool IsLocked { get; set; }
     public bool IsHidden { get; set; }
-    public DateTime CreationTime { get; set; }
-    public DateTime ModificationTime { get; set; }
+    public string CreationTime { get; set; }
+    public string ModificationTime { get; set; }
   }
 }

@@ -57,12 +57,12 @@ namespace WGU_ESS.Domain.Mappers
         Location = appointment.Location,
         Type = appointment.Type,
         Url = appointment.Url,
-        StartDate = appointment.StartDate,
-        EndDate = appointment.EndDate,
+        StartDate = appointment.StartDate.ToString("yyyy-MM-ddTHH:mm:ssZ"),
+        EndDate = appointment.EndDate.ToString("yyyy-MM-ddTHH:mm:ssZ"),
         NeedReminder = appointment.NeedReminder,
         IsHidden = appointment.IsHidden,
-        CreationTime = appointment.CreationTime,
-        ModificationTime = appointment.ModificationTime,
+        CreationTime = appointment.CreationTime.ToString("yyyy-MM-ddTHH:mm:ssZ"),
+        ModificationTime = appointment.ModificationTime.ToString("yyyy-MM-ddTHH:mm:ssZ"),
         ContactId = appointment.ContactId,
         UserId = appointment.UserId
       };

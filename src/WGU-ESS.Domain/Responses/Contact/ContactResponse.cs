@@ -17,7 +17,7 @@ namespace WGU_ESS.Domain.Responses.Contact
     public string Country { get; set; }
     public bool IsHidden { get; set; }
     public Guid UserId { get; set; }
-    public DateTime CreationTime { get; set; }
-    public DateTime ModificationTime { get; set; }
+    public string CreationTime { get; set; }
+    public string ModificationTime { get; set; }
   }
 }

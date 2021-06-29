@@ -65,8 +65,8 @@ namespace WGU_ESS.Domain.Mappers
         PhoneNumber = contact.PhoneNumber,
         Email = contact.Email,
         IsHidden = contact.IsHidden,
-        CreationTime = contact.CreationTime,
-        ModificationTime = contact.ModificationTime,
+        CreationTime = contact.CreationTime.ToString("yyyy-MM-ddTHH:mm:ssZ"),
+        ModificationTime = contact.ModificationTime.ToString("yyyy-MM-ddTHH:mm:ssZ"),
         UserId = contact.UserId
       };
 
