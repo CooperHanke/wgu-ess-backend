@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using WGU_ESS.Domain.Requests.User;
 using System;
-using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 
@@ -48,7 +47,8 @@ namespace WGU_ESS.API.Controllers
     [HttpPut("{id:guid}")]
     public async Task<IActionResult> Put(Guid id, EditUserRequest request)
     {
-      request.Id = id;
+      // first, we make a copy of the user so we can get the password, in case it is not being changed
+      var user = await _userService.GetUserAsync(new GetUserRequest { Id = request.Id });
 
       // if the user is regular, only accept password and dark mode preference
       // however, if they are a manager, change all fields
@@ -60,8 +60,6 @@ namespace WGU_ESS.API.Controllers
       // we check and ensure that only a valid claim for the same user can edit a user
       else if (User.FindFirstValue("UserId") == request.Id.ToString())
       {
-        // first, we make a copy of the user as they are by retrieving the user
-        var user = await _userService.GetUserAsync(new GetUserRequest { Id = request.Id });
         // next, we recreate the edit user request
         var result = await _userService.EditUserAsync(new EditUserRequest
         {

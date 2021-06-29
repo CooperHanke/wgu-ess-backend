@@ -79,7 +79,11 @@ namespace WGU_ESS.Domain.Services
         throw new ArgumentException($"User with ID {request.Id} is not present");
       }
 
-      request.Password = Hash(request.Password);
+      if (request.Password == null) {
+        request.Password = existingUser.Password;
+      } else {
+        request.Password = Hash(request.Password);
+      }
 
       var entity = _userMapper.Map(request);
       entity.CreationTime = existingUser.CreationTime;
