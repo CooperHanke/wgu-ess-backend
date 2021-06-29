@@ -18,7 +18,7 @@ namespace WGU_ESS.Infrastructure.SchemaDefinitions
       builder.Property(p => p.Type).IsRequired();
       builder.Property(p => p.IsHidden).IsRequired();
       builder.Property(p => p.UsesDarkMode).IsRequired();
-
+      builder.Property(p => p.NeedPasswordReset).IsRequired();
       builder.Property(p => p.Type).HasConversion<string>().IsRequired();
       
       builder.HasMany(e => e.Appointments).WithOne(e => e.User).HasForeignKey(k => k.UserId);

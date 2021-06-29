@@ -36,7 +36,8 @@ namespace WGU_ESS.Domain.Mappers
         Type = (UserType) Enum.Parse(typeof(UserType), request.Type),
         UsesDarkMode = request.UsesDarkMode,
         IsHidden = request.IsHidden,
-        IsLocked = request.IsLocked
+        IsLocked = request.IsLocked,
+        NeedPasswordReset = request.NeedPasswordReset
       };
 
       return user;

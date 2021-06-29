@@ -18,6 +18,7 @@ namespace WGU_ESS.Domain.Entities
     public string Password { get; set; }
     public bool UsesDarkMode { get; set; }
     public bool IsLocked { get; set; }
+    public bool NeedPasswordReset { get; set; }
     // associates the contacts with the user
     public ICollection<Contact> Contacts { get; set; }
     // assoicates the appointments with the user
