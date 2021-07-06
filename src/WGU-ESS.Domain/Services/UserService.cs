@@ -99,6 +99,17 @@ namespace WGU_ESS.Domain.Services
       var response = new LoginResponse { Token = null, Status = "Failure", UserId = null };
 
       var user = await _userRepository.GetByUserNameAsync(request.UserName);
+
+      if (user != null && user.IsLocked.Equals(true))
+      {
+        {
+          response.UserId = user.Id.ToString();
+          response.Status = "Locked";
+          return response;
+        }
+      }
+
+      // if (user.IsLocked == true)
       
       if (user != null && PasswordMatches(user.Password, request.Password))
       {
