@@ -89,7 +89,14 @@ namespace WGU_ESS.API.Controllers
       {
         return Ok(result);
       }
-      return BadRequest("Invalid credintials");
+      else if (result.Status == "Locked")
+      {
+        return BadRequest("You are currently locked from this system. Please reach out to a manager to have access restored.");
+      }
+      else 
+      {
+      return BadRequest("Authentication failed. Please ensure that your username and password is correct, or reach out to a manager to have your password reset.");
+      }
     }
   }
 }
