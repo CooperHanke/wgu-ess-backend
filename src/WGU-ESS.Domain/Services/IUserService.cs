@@ -10,6 +10,8 @@ namespace WGU_ESS.Domain.Services
     Task<IEnumerable<UserResponse>> GetUsersAsync();
     Task<UserResponse> GetUserAsync(GetUserRequest request);
     Task<UserResponse> AddUserAsync(AddUserRequest request);
+    // added in order to check if a username exists, regardless of status
+    Task<UserResponse> GetByUserNameAsyncForUniquenessCheck(string username);
     Task<UserResponse> EditUserAsync(EditUserRequest request);
     Task<UserResponse> DeleteUserAsync(DeleteUserRequest request);
     Task<LoginResponse> AuthenticateUser(SignInRequest request);

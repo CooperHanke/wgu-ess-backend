@@ -10,6 +10,7 @@ namespace WGU_ESS.Domain.Repositories
     Task<IEnumerable<User>> GetAsync();
     Task<User> GetAsync(Guid id);
     User Add(User user);
+    Task<User> GetByUserNameAsyncForUniquenessCheck(string username);
     User Update(User user);
 
     // for authentication
