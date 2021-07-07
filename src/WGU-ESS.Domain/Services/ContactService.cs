@@ -80,6 +80,7 @@ namespace WGU_ESS.Domain.Services
       if (request?.Id == null) throw new ArgumentNullException();
 
       var result = await _contactRepository.GetAsync(request.Id);
+      result.ModificationTime = DateTime.UtcNow;
       result.IsHidden = true;
 
       _contactRepository.Update(result);
