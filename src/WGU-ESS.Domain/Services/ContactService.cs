@@ -74,5 +74,19 @@ namespace WGU_ESS.Domain.Services
       await _contactRepository.UnitOfWork.SaveChangesAsync();
       return _contactMapper.Map(result);
     }
+
+    public async Task<ContactResponse> DeleteContactAsync(DeleteContactRequest request)
+    {
+      if (request?.Id == null) throw new ArgumentNullException();
+
+      var result = await _contactRepository.GetAsync(request.Id);
+      result.ModificationTime = DateTime.UtcNow;
+      result.IsHidden = true;
+
+      _contactRepository.Update(result);
+      await _contactRepository.UnitOfWork.SaveChangesAsync();
+
+      return _contactMapper.Map(result);
+    }
   }
 }

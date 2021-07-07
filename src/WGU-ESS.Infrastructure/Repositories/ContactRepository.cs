@@ -24,12 +24,12 @@ namespace WGU_ESS.Infrastructure.Repositories
 
     public async Task<IEnumerable<Contact>> GetAsync()
     {
-      return await _context.Contacts.AsNoTracking().ToListAsync();
+      return await _context.Contacts.AsNoTracking().Where(x => !x.IsHidden).ToListAsync();
     }
 
     public async Task<Contact> GetAsync(Guid id)
     {
-      return await _context.Contacts.AsNoTracking().Where(x => x.Id == id).FirstOrDefaultAsync();
+      return await _context.Contacts.AsNoTracking().Where(x => !x.IsHidden).Where(x => x.Id == id).FirstOrDefaultAsync();
     }
 
     public Contact Update(Contact contact)

@@ -47,5 +47,13 @@ namespace WGU_ESS.API.Controllers
       var result = await _contactService.EditContactAsync(request);
       return Ok(result);
     }
+
+    [HttpDelete("{id:guid}")]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+      var request = new DeleteContactRequest { Id = id };
+      await _contactService.DeleteContactAsync(request);
+      return NoContent();
+    }
   }
 }
