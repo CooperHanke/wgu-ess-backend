@@ -41,6 +41,12 @@ namespace WGU_ESS.Domain.Services
       return _userMapper.Map(entity);
     }
 
+    public async Task<UserResponse> GetByUserNameAsyncForUniquenessCheck(string username)
+    {
+      var existingUser = await _userRepository.GetByUserNameAsyncForUniquenessCheck(username);
+      return _userMapper.Map(existingUser);
+    }
+
     public async Task<UserResponse> AddUserAsync(AddUserRequest request)
     {
       var guidNotGood = true;

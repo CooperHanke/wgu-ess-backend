@@ -39,6 +39,11 @@ namespace WGU_ESS.API.Controllers
     [HttpPost]
     public async Task<IActionResult> Post(AddUserRequest request)
     {
+      // check for duplicate first and last name, as well as username
+      // first, we pull down all the users
+      var existingUser = await _userService.GetByUserNameAsyncForUniquenessCheck(request.UserName);
+      if (existingUser != null) return BadRequest($"A user with username '{request.UserName}' already exists; please choose another username");
+
       var result = await _userService.AddUserAsync(request);
       return CreatedAtAction(nameof(GetById), new { id = result.Id }, null);
     }
@@ -69,6 +74,7 @@ namespace WGU_ESS.API.Controllers
           UserName = user.UserName,
           Password = request.Password,
           UsesDarkMode = request.UsesDarkMode,
+          NeedPasswordReset = user.NeedPasswordReset,
           Type = user.Type,
           IsLocked = user.IsLocked,
           IsHidden = user.IsHidden
