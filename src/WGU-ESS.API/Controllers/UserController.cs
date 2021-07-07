@@ -59,8 +59,27 @@ namespace WGU_ESS.API.Controllers
       // however, if they are a manager, change all fields
       if (User.HasClaim(ClaimTypes.Role, "Manager"))
       {
-        var result = await _userService.EditUserAsync(request);
-        return Ok(result);
+        // only a manager can change a username, therefore, check that the username and id are the same
+        if (user.UserName == request.UserName && user.Id == request.Id)
+        {
+          var result = await _userService.EditUserAsync(request);
+          return Ok(result);
+        }
+        else
+        {
+          // if the username has changed, we need to get a user with the same username, and check the id
+          // if the name is changed but id is different, we let the user know they need to pick a different name
+          var existingWithName = await _userService.GetByUserNameAsyncForUniquenessCheck(request.UserName);
+          if (existingWithName.Id != request.Id)
+          {
+            return BadRequest($"A user with username '{request.UserName}' already exists; please choose another username or revert username");
+          }
+          else
+          {
+            var result = await _userService.EditUserAsync(request);
+            return Ok(result);
+          }
+        }
       }
       // we check and ensure that only a valid claim for the same user can edit a user
       else if (User.FindFirstValue("UserId") == request.Id.ToString())
@@ -81,7 +100,8 @@ namespace WGU_ESS.API.Controllers
         });
         return Ok(result);
       }
-      else {
+      else
+      {
         return BadRequest("Current user doesn't have permission to change another user's password");
       }
     }
@@ -108,9 +128,9 @@ namespace WGU_ESS.API.Controllers
       {
         return BadRequest("You are currently locked from this system. Please reach out to a manager to have access restored.");
       }
-      else 
+      else
       {
-      return BadRequest("Authentication failed. Please ensure that your username and password is correct, or reach out to a manager to have your password reset.");
+        return BadRequest("Authentication failed. Please ensure that your username and password is correct, or reach out to a manager to have your password reset.");
       }
     }
   }
