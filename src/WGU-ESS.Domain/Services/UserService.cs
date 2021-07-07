@@ -108,8 +108,6 @@ namespace WGU_ESS.Domain.Services
           return response;
         }
       }
-
-      // if (user.IsLocked == true)
       
       if (user != null && PasswordMatches(user.Password, request.Password))
       {
