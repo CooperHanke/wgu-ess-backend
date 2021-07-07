@@ -12,7 +12,6 @@ namespace WGU_ESS.Domain.Repositories
     User Add(User user);
     Task<User> GetByUserNameAsyncForUniquenessCheck(string username);
     User Update(User user);
-
     // for authentication
     Task<User> GetByUserNameAsync(string username);
   }

@@ -1,5 +1,3 @@
-using System.IdentityModel.Tokens.Jwt;
-
 namespace WGU_ESS.Domain.Responses.User
 {
   public class LoginResponse

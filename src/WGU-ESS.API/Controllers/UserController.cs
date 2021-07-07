@@ -133,5 +133,20 @@ namespace WGU_ESS.API.Controllers
         return BadRequest("Authentication failed. Please ensure that your username and password is correct, or reach out to a manager to have your password reset.");
       }
     }
+
+    [HttpPost("auth/reset")]
+    public async Task<IActionResult> ResetPassword(ResetPasswordRequest request)
+    {
+      // to enable a reset, we are going to find the user by the username
+      var response = await _userService.ResetUserPassword(request);
+      if (response.Accepted)
+      {
+        return Ok(response);
+      }
+      else
+      {
+        return BadRequest("Resetting the password failed. You do not exist in our system.");
+      }
+    }
   }
 }
