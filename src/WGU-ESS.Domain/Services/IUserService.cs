@@ -15,5 +15,6 @@ namespace WGU_ESS.Domain.Services
     Task<UserResponse> EditUserAsync(EditUserRequest request);
     Task<UserResponse> DeleteUserAsync(DeleteUserRequest request);
     Task<LoginResponse> AuthenticateUser(SignInRequest request);
+    Task<ResetPasswordResponse> ResetUserPassword(ResetPasswordRequest request);
   }
 }

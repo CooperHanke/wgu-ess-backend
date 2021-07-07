@@ -92,6 +92,8 @@ namespace WGU_ESS.Domain.Services
       else
       {
         request.Password = Hash(request.Password);
+        // if the change password flag was set, unset it now
+        request.NeedPasswordReset = false;
       }
 
       var entity = _userMapper.Map(request);
@@ -115,6 +117,39 @@ namespace WGU_ESS.Domain.Services
       await _userRepository.UnitOfWork.SaveChangesAsync();
 
       return _userMapper.Map(result);
+    }
+
+    public async Task<ResetPasswordResponse> ResetUserPassword(ResetPasswordRequest request)
+    {
+      var response = new ResetPasswordResponse { Accepted = false };
+
+      var user = await _userRepository.GetByUserNameAsync(request.UserName);
+
+      if (user.FirstName == request.FirstName && request.LastName == request.LastName)
+      {
+        var editRequest = new EditUserRequest
+        {
+          Id = user.Id,
+          FirstName = request.FirstName,
+          LastName = request.LastName,
+          Type = user.Type.ToString(),
+          UserName = request.UserName,
+          UsesDarkMode = user.UsesDarkMode,
+          IsLocked = user.IsLocked,
+          NeedPasswordReset = true,
+          IsHidden = user.IsHidden
+        };
+
+        // use the existing editing functionality to edit response
+        var result = await this.EditUserAsync(editRequest);
+        
+        if (result.NeedPasswordReset)
+        {
+          response.Accepted = true;
+        }
+      }
+
+      return response;
     }
 
     public async Task<LoginResponse> AuthenticateUser(SignInRequest request)
