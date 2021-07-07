@@ -43,5 +43,11 @@ namespace WGU_ESS.Infrastructure.Repositories
     {
       return await _context.Users.AsNoTracking().Where(x => !x.IsHidden).Where(x => x.UserName == username).FirstOrDefaultAsync();
     }
+
+    // for checking username for uniqueness
+    public async Task<User> GetByUserNameAsyncForUniquenessCheck(string username)
+    {
+      return await _context.Users.AsNoTracking().Where(x => x.UserName == username).FirstOrDefaultAsync();
+    }
   }
 }

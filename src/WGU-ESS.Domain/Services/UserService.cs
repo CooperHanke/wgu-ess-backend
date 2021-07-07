@@ -41,6 +41,12 @@ namespace WGU_ESS.Domain.Services
       return _userMapper.Map(entity);
     }
 
+    public async Task<UserResponse> GetByUserNameAsyncForUniquenessCheck(string username)
+    {
+      var existingUser = await _userRepository.GetByUserNameAsyncForUniquenessCheck(username);
+      return _userMapper.Map(existingUser);
+    }
+
     public async Task<UserResponse> AddUserAsync(AddUserRequest request)
     {
       var guidNotGood = true;
@@ -57,7 +63,7 @@ namespace WGU_ESS.Domain.Services
           newId = Guid.NewGuid();
         }
       }
-      
+
       request.Password = Hash(request.Password);
 
       var user = _userMapper.Map(request);
@@ -79,9 +85,12 @@ namespace WGU_ESS.Domain.Services
         throw new ArgumentException($"User with ID {request.Id} is not present");
       }
 
-      if (request.Password == null) {
+      if (request.Password == null)
+      {
         request.Password = existingUser.Password;
-      } else {
+      }
+      else
+      {
         request.Password = Hash(request.Password);
       }
 
@@ -122,30 +131,30 @@ namespace WGU_ESS.Domain.Services
           return response;
         }
       }
-      
+
       if (user != null && PasswordMatches(user.Password, request.Password))
       {
         var claims = new[] {
-            new Claim(JwtRegisteredClaimNames.Sub, _configuration["Jwt:Subject"]),
-            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-            new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
-            new Claim("UserId", user.Id.ToString()),
-            new Claim("FirstName", user.FirstName),
-            new Claim("LastName", user.LastName),
-            new Claim("UserName", user.UserName),
-            new Claim("roles", user.Type.ToString())
-          };
+          new Claim(JwtRegisteredClaimNames.Sub, _configuration["Jwt:Subject"]),
+          new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+          new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
+          new Claim("UserId", user.Id.ToString()),
+          new Claim("FirstName", user.FirstName),
+          new Claim("LastName", user.LastName),
+          new Claim("UserName", user.UserName),
+          new Claim("roles", user.Type.ToString())
+        };
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
 
         var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
         var token = new JwtSecurityToken(
-            _configuration["Jwt:Issuer"],
-            _configuration["Jwt:Audience"],
-            claims,
-            expires: DateTime.UtcNow.AddDays(1),
-            signingCredentials: signIn);
+          _configuration["Jwt:Issuer"],
+          _configuration["Jwt:Audience"],
+          claims,
+          expires: DateTime.UtcNow.AddDays(1),
+          signingCredentials: signIn);
 
         response.Token = new JwtSecurityTokenHandler().WriteToken(token);
         response.UserId = user.Id.ToString();
