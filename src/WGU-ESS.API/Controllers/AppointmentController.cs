@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using WGU_ESS.Domain.Requests.Appointment;
 using System;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WGU_ESS.API.Controllers
 {
+  [Authorize]
   [ApiController]
   [Route("/api/appointments")]
   public class AppointmentController : ControllerBase
@@ -44,6 +46,14 @@ namespace WGU_ESS.API.Controllers
       request.Id = id;
       var result = await _appointmentService.EditAppointmentAsync(request);
       return Ok(result);
+    }
+
+    [HttpDelete("{id:guid}")]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+      var request = new DeleteAppointmentRequest { Id = id };
+      await _appointmentService.DeleteAppointmentAsync(request);
+      return NoContent();
     }
   }
 }

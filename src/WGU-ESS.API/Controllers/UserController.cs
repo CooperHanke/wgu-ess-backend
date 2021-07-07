@@ -80,6 +80,15 @@ namespace WGU_ESS.API.Controllers
       }
     }
 
+    [Authorize(Roles = "Manager")]
+    [HttpDelete("{id:guid}")]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+      var request = new DeleteUserRequest { Id = id };
+      await _userService.DeleteUserAsync(request);
+      return NoContent();
+    }
+
     [HttpPost("auth")]  // to authenticate
     public async Task<IActionResult> SignIn(SignInRequest request)
     {

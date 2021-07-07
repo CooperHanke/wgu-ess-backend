@@ -17,6 +17,7 @@ namespace WGU_ESS.Infrastructure.SchemaDefinitions
       builder.Property(p => p.PostalCode).IsRequired();
       builder.Property(p => p.PhoneNumber).IsRequired();
       builder.Property(p => p.UserId).IsRequired();
+      builder.Property(p => p.IsHidden).IsRequired();
       
       builder.HasOne(e => e.User).WithMany(c => c.Contacts).HasForeignKey(k => k.UserId);
       builder.HasMany(e => e.Appointments).WithOne(c => c.Contact).HasForeignKey(k => k.ContactId);

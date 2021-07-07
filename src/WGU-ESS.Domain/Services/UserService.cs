@@ -94,6 +94,20 @@ namespace WGU_ESS.Domain.Services
       return _userMapper.Map(result);
     }
 
+    public async Task<UserResponse> DeleteUserAsync(DeleteUserRequest request)
+    {
+      if (request?.Id == null) throw new ArgumentNullException();
+
+      var result = await _userRepository.GetAsync(request.Id);
+      result.ModificationTime = DateTime.UtcNow;
+      result.IsHidden = true;
+
+      _userRepository.Update(result);
+      await _userRepository.UnitOfWork.SaveChangesAsync();
+
+      return _userMapper.Map(result);
+    }
+
     public async Task<LoginResponse> AuthenticateUser(SignInRequest request)
     {
       var response = new LoginResponse { Token = null, Status = "Failure", UserId = null };
@@ -108,8 +122,6 @@ namespace WGU_ESS.Domain.Services
           return response;
         }
       }
-
-      // if (user.IsLocked == true)
       
       if (user != null && PasswordMatches(user.Password, request.Password))
       {
