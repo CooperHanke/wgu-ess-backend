@@ -24,12 +24,12 @@ namespace WGU_ESS.Infrastructure.Repositories
 
     public async Task<IEnumerable<User>> GetAsync()
     {
-      return await _context.Users.AsNoTracking().ToListAsync();
+      return await _context.Users.AsNoTracking().Where(x => !x.IsHidden).ToListAsync();
     }
 
     public async Task<User> GetAsync(Guid id)
     {
-      return await _context.Users.AsNoTracking().Where(x => x.Id == id).FirstOrDefaultAsync();
+      return await _context.Users.AsNoTracking().Where(x => !x.IsHidden).Where(x => x.Id == id).FirstOrDefaultAsync();
     }
 
     public User Update(User user)
@@ -41,7 +41,7 @@ namespace WGU_ESS.Infrastructure.Repositories
     // for authentication
     public async Task<User> GetByUserNameAsync(string username)
     {
-      return await _context.Users.AsNoTracking().Where(x => x.UserName == username).FirstOrDefaultAsync();
+      return await _context.Users.AsNoTracking().Where(x => !x.IsHidden).Where(x => x.UserName == username).FirstOrDefaultAsync();
     }
   }
 }

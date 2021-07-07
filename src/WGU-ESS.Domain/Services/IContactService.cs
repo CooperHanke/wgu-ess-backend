@@ -11,5 +11,6 @@ namespace WGU_ESS.Domain.Services
     Task<ContactResponse> GetContactAsync(GetContactRequest request);
     Task<ContactResponse> AddContactAsync(AddContactRequest request);
     Task<ContactResponse> EditContactAsync(EditContactRequest request);
+    Task<ContactResponse> DeleteContactAsync(DeleteContactRequest request);
   }
 }

@@ -76,5 +76,18 @@ namespace WGU_ESS.Domain.Services
       await _appointmentRepository.UnitOfWork.SaveChangesAsync();
       return _appointmentMapper.Map(result);
     }
+
+    public async Task<AppointmentResponse> DeleteAppointmentAsync(DeleteAppointmentRequest request)
+    {
+      if (request?.Id == null) throw new ArgumentNullException();
+
+      var result = await _appointmentRepository.GetAsync(request.Id);
+      result.IsHidden = true;
+
+      _appointmentRepository.Update(result);
+      await _appointmentRepository.UnitOfWork.SaveChangesAsync();
+
+      return _appointmentMapper.Map(result);
+    }
   }
 }

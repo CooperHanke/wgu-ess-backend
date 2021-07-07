@@ -11,5 +11,6 @@ namespace WGU_ESS.Domain.Services
     Task<AppointmentResponse> GetAppointmentAsync(GetAppointmentRequest request);
     Task<AppointmentResponse> AddAppointmentAsync(AddAppointmentRequest request);
     Task<AppointmentResponse> EditAppointmentAsync(EditAppointmentRequest request);
+    Task<AppointmentResponse> DeleteAppointmentAsync(DeleteAppointmentRequest request);
   }
 }
