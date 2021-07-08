@@ -125,7 +125,7 @@ namespace WGU_ESS.Domain.Services
 
       var user = await _userRepository.GetByUserNameAsync(request.UserName);
 
-      if (user.FirstName == request.FirstName && request.LastName == request.LastName)
+      if (user != null && user.FirstName == request.FirstName && request.LastName == request.LastName)
       {
         var editRequest = new EditUserRequest
         {

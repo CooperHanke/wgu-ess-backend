@@ -138,15 +138,9 @@ namespace WGU_ESS.API.Controllers
     public async Task<IActionResult> ResetPassword(ResetPasswordRequest request)
     {
       // to enable a reset, we are going to find the user by the username
+      // in order to protect the system for security, all requests return Ok
       var response = await _userService.ResetUserPassword(request);
-      if (response.Accepted)
-      {
-        return Ok(response);
-      }
-      else
-      {
-        return BadRequest("Resetting the password failed. You do not exist in our system.");
-      }
+      return Ok(response);
     }
   }
 }
