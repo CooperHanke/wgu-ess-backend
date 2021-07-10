@@ -26,7 +26,7 @@ namespace WGU_ESS.API.Controllers
       return Ok(result);
     }
 
-    [HttpGet("user/{id:guid}")]
+    [HttpGet("user/{userId:guid}")]
     public async Task<IActionResult> GetByUserId(Guid userId)
     {
       var result = await _contactService.GetContactsByUserIdAsync(new GetContactByUserIdRequest { UserId = userId } );
