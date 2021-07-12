@@ -26,6 +26,12 @@ namespace WGU_ESS.Domain.Services
       return result.Select(x => _contactMapper.Map(x));
     }
 
+    public async Task<IEnumerable<ContactResponse>> GetContactsByUserIdAsync(GetContactByUserIdRequest request)
+    {
+      var result = await _contactRepository.GetContactsByUserAsync(request.UserId);
+      return result.Select(x => _contactMapper.Map(x));
+    }
+
     public async Task<ContactResponse> GetContactAsync(GetContactRequest request)
     {
       if (request?.Id == null) throw new ArgumentNullException();

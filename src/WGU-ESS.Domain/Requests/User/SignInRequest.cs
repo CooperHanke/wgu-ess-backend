@@ -1,5 +1,3 @@
-using System;
-
 namespace WGU_ESS.Domain.Requests.User
 {
   public class SignInRequest

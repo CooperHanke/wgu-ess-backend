@@ -27,6 +27,11 @@ namespace WGU_ESS.Infrastructure.Repositories
       return await _context.Contacts.AsNoTracking().Where(x => !x.IsHidden).ToListAsync();
     }
 
+    public async Task<IEnumerable<Contact>> GetContactsByUserAsync(Guid userId)
+    {
+      return await _context.Contacts.AsNoTracking().Where(x => !x.IsHidden).Where(x => x.UserId == userId).ToListAsync();
+    }
+
     public async Task<Contact> GetAsync(Guid id)
     {
       return await _context.Contacts.AsNoTracking().Where(x => !x.IsHidden).Where(x => x.Id == id).FirstOrDefaultAsync();

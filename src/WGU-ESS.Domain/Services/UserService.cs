@@ -18,12 +18,14 @@ namespace WGU_ESS.Domain.Services
   public class UserService : IUserService
   {
     private readonly IUserRepository _userRepository;
+    private readonly IContactRepository _contactRepository;
     private readonly IUserMapper _userMapper;
     private readonly IConfiguration _configuration;
 
-    public UserService(IUserRepository userRepository, IUserMapper userMapper, IConfiguration configuration)
+    public UserService(IUserRepository userRepository, IContactRepository contactRepository, IUserMapper userMapper, IConfiguration configuration)
     {
       _userRepository = userRepository;
+      _contactRepository = contactRepository;
       _userMapper = userMapper;
       _configuration = configuration;
     }
@@ -115,6 +117,14 @@ namespace WGU_ESS.Domain.Services
 
       _userRepository.Update(result);
       await _userRepository.UnitOfWork.SaveChangesAsync();
+
+      var contactsToDelete = await _contactRepository.GetContactsByUserAsync(request.Id);
+      foreach (var contact in contactsToDelete) {
+        contact.ModificationTime = DateTime.UtcNow;
+        contact.IsHidden = true;
+        _contactRepository.Update(contact);
+      }
+      await _contactRepository.UnitOfWork.SaveChangesAsync();
 
       return _userMapper.Map(result);
     }

@@ -8,6 +8,7 @@ namespace WGU_ESS.Domain.Services
   public interface IContactService
   {
     Task<IEnumerable<ContactResponse>> GetContactsAsync();
+    Task<IEnumerable<ContactResponse>> GetContactsByUserIdAsync(GetContactByUserIdRequest request);
     Task<ContactResponse> GetContactAsync(GetContactRequest request);
     Task<ContactResponse> AddContactAsync(AddContactRequest request);
     Task<ContactResponse> EditContactAsync(EditContactRequest request);
