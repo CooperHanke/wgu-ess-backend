@@ -12,11 +12,13 @@ namespace WGU_ESS.Domain.Services
   public class ContactService : IContactService
   {
     private readonly IContactRepository _contactRepository;
+    private readonly IAppointmentRepository _appointmentRepository;
     private readonly IContactMapper _contactMapper;
     
-    public ContactService(IContactRepository contactRepository, IContactMapper contactMapper)
+    public ContactService(IContactRepository contactRepository, IAppointmentRepository appointmentRepository,IContactMapper contactMapper)
     {
       _contactRepository = contactRepository;
+      _appointmentRepository = appointmentRepository;
       _contactMapper = contactMapper;
     }
 
@@ -91,6 +93,15 @@ namespace WGU_ESS.Domain.Services
 
       _contactRepository.Update(result);
       await _contactRepository.UnitOfWork.SaveChangesAsync();
+
+      // soft delete all of the associated appointments
+      var appointmentsToDelete = await _appointmentRepository.GetAppointmentsByUserAsync(request.Id);
+      foreach (var appointment in appointmentsToDelete) {
+        appointment.ModificationTime = DateTime.UtcNow;
+        appointment.IsHidden = true;
+        _appointmentRepository.Update(appointment);
+      }
+      await _appointmentRepository.UnitOfWork.SaveChangesAsync();
 
       return _contactMapper.Map(result);
     }

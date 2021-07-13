@@ -19,13 +19,20 @@ namespace WGU_ESS.Domain.Services
   {
     private readonly IUserRepository _userRepository;
     private readonly IContactRepository _contactRepository;
+    private readonly IAppointmentRepository _appointmentRepository;
     private readonly IUserMapper _userMapper;
     private readonly IConfiguration _configuration;
 
-    public UserService(IUserRepository userRepository, IContactRepository contactRepository, IUserMapper userMapper, IConfiguration configuration)
+    public UserService(
+      IUserRepository userRepository, 
+      IContactRepository contactRepository, 
+      IAppointmentRepository appointmentRepository,
+      IUserMapper userMapper, 
+      IConfiguration configuration)
     {
       _userRepository = userRepository;
       _contactRepository = contactRepository;
+      _appointmentRepository = appointmentRepository;
       _userMapper = userMapper;
       _configuration = configuration;
     }
@@ -118,6 +125,7 @@ namespace WGU_ESS.Domain.Services
       _userRepository.Update(result);
       await _userRepository.UnitOfWork.SaveChangesAsync();
 
+      // soft delete all of the associated contacts
       var contactsToDelete = await _contactRepository.GetContactsByUserAsync(request.Id);
       foreach (var contact in contactsToDelete) {
         contact.ModificationTime = DateTime.UtcNow;
@@ -125,6 +133,15 @@ namespace WGU_ESS.Domain.Services
         _contactRepository.Update(contact);
       }
       await _contactRepository.UnitOfWork.SaveChangesAsync();
+
+      // soft delete all of the associated appointments
+      var appointmentsToDelete = await _appointmentRepository.GetAppointmentsByUserAsync(request.Id);
+      foreach (var appointment in appointmentsToDelete) {
+        appointment.ModificationTime = DateTime.UtcNow;
+        appointment.IsHidden = true;
+        _appointmentRepository.Update(appointment);
+      }
+      await _appointmentRepository.UnitOfWork.SaveChangesAsync();
 
       return _userMapper.Map(result);
     }
