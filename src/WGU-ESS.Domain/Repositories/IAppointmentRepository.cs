@@ -8,6 +8,7 @@ namespace WGU_ESS.Domain.Repositories
   public interface IAppointmentRepository : IRepository
   {
     Task<IEnumerable<Appointment>> GetAsync();
+    Task<IEnumerable<Appointment>> GetAppointmentsByUserAsync(Guid userId);
     Task<Appointment> GetAsync(Guid id);
     Appointment Add(Appointment Appointment);
     Appointment Update(Appointment Appointment);

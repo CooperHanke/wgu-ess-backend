@@ -9,6 +9,7 @@ namespace WGU_ESS.Domain.Services
   {
     Task<IEnumerable<AppointmentResponse>> GetAppointmentsAsync();
     Task<AppointmentResponse> GetAppointmentAsync(GetAppointmentRequest request);
+    Task<IEnumerable<AppointmentResponse>> GetAppointmentsByUserIdAsync(GetAppointmentsByUserIdRequest request);
     Task<AppointmentResponse> AddAppointmentAsync(AddAppointmentRequest request);
     Task<AppointmentResponse> EditAppointmentAsync(EditAppointmentRequest request);
     Task<AppointmentResponse> DeleteAppointmentAsync(DeleteAppointmentRequest request);

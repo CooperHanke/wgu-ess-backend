@@ -26,6 +26,12 @@ namespace WGU_ESS.Domain.Services
       return result.Select(x => _appointmentMapper.Map(x));
     }
 
+    public async Task<IEnumerable<AppointmentResponse>> GetAppointmentsByUserIdAsync(GetAppointmentsByUserIdRequest request)
+    {
+      var result = await _appointmentRepository.GetAppointmentsByUserAsync(request.UserId);
+      return result.Select(x => _appointmentMapper.Map(x));
+    }
+
     public async Task<AppointmentResponse> GetAppointmentAsync(GetAppointmentRequest request)
     {
       if (request?.Id == null) throw new ArgumentNullException();
@@ -54,6 +60,7 @@ namespace WGU_ESS.Domain.Services
       {
         var appointment = _appointmentMapper.Map(request);
         appointment.CreationTime = DateTime.UtcNow;
+        appointment.ModificationTime = DateTime.UtcNow;
         var result = _appointmentRepository.Add(appointment);
         await _appointmentRepository.UnitOfWork.SaveChangesAsync();
         return _appointmentMapper.Map(result);

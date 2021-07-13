@@ -33,6 +33,13 @@ namespace WGU_ESS.API.Controllers
       return Ok(result);
     }
 
+    [HttpGet("user/{userId:guid}")]
+    public async Task<IActionResult> GetByUserId(Guid userId)
+    {
+      var result = await _appointmentService.GetAppointmentsByUserIdAsync(new GetAppointmentsByUserIdRequest { UserId = userId } );
+      return Ok(result);
+    }
+
     [HttpPost]
     public async Task<IActionResult> Post(AddAppointmentRequest request)
     {
