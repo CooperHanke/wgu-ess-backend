@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
-using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
@@ -20,6 +19,7 @@ namespace WGU_ESS.Domain.Services
     private readonly IUserRepository _userRepository;
     private readonly IContactRepository _contactRepository;
     private readonly IAppointmentRepository _appointmentRepository;
+    private readonly IPasswordService _passwordService;
     private readonly IUserMapper _userMapper;
     private readonly IConfiguration _configuration;
 
@@ -27,12 +27,14 @@ namespace WGU_ESS.Domain.Services
       IUserRepository userRepository, 
       IContactRepository contactRepository, 
       IAppointmentRepository appointmentRepository,
+      IPasswordService passwordService,
       IUserMapper userMapper, 
       IConfiguration configuration)
     {
       _userRepository = userRepository;
       _contactRepository = contactRepository;
       _appointmentRepository = appointmentRepository;
+      _passwordService = passwordService;
       _userMapper = userMapper;
       _configuration = configuration;
     }
@@ -73,7 +75,7 @@ namespace WGU_ESS.Domain.Services
         }
       }
 
-      request.Password = Hash(request.Password);
+      request.Password = _passwordService.Hash(request.Password);
 
       var user = _userMapper.Map(request);
       user.Id = newId;
@@ -100,7 +102,7 @@ namespace WGU_ESS.Domain.Services
       }
       else
       {
-        request.Password = Hash(request.Password);
+        request.Password = _passwordService.Hash(request.Password);
         // if the change password flag was set, unset it now
         request.NeedPasswordReset = false;
       }
@@ -194,7 +196,7 @@ namespace WGU_ESS.Domain.Services
         }
       }
 
-      if (user != null && PasswordMatches(user.Password, request.Password))
+      if (user != null && _passwordService.PasswordMatches(user.Password, request.Password))
       {
         var claims = new[] {
           new Claim(JwtRegisteredClaimNames.Sub, _configuration["Jwt:Subject"]),
@@ -225,51 +227,5 @@ namespace WGU_ESS.Domain.Services
 
       return response;
     }
-
-    private string Hash(string password)
-    {
-      int saltSize = 16; // 128 bit 
-      int keySize = 32; // 256 bit
-      int iterations = 10000;
-      using (var algorithm = new Rfc2898DeriveBytes(
-        password,
-        saltSize,
-        iterations,
-        HashAlgorithmName.SHA512))
-      {
-        var key = Convert.ToBase64String(algorithm.GetBytes(keySize));
-        var salt = Convert.ToBase64String(algorithm.Salt);
-
-        return $"{iterations}.{salt}.{key}";
-      }
-    }
-
-    private bool PasswordMatches(string hash, string password)
-    {
-      int keySize = 32; // 256 bit
-      var parts = hash.Split('.', 3);
-
-      if (parts.Length == 3)
-      {
-        var iterations = Convert.ToInt32(parts[0]);
-        var salt = Convert.FromBase64String(parts[1]);
-        var key = Convert.FromBase64String(parts[2]);
-
-        using (var algorithm = new Rfc2898DeriveBytes(
-          password,
-          salt,
-          iterations,
-          HashAlgorithmName.SHA512))
-        {
-          if (algorithm.GetBytes(keySize).SequenceEqual(key))
-          {
-            return true;
-          }
-        }
-      }
-
-      return false;
-    }
-
   }
 }

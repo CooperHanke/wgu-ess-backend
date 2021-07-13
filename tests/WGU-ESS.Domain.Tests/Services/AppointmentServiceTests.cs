@@ -72,8 +72,8 @@ namespace WGU_ESS.Domain.Tests.Services
       result.Location.ShouldBe(test_appointment.Location);
       result.Url.ShouldBe(test_appointment.Url);
       result.NeedReminder.ShouldBe(test_appointment.NeedReminder);
-      result.StartDate.ShouldBe(test_appointment.StartDate);
-      result.EndDate.ShouldBe(test_appointment.EndDate);
+      result.StartDate.ShouldBe(test_appointment.StartDate.ToString("yyyy-MM-ddTHH:mm:ssZ"));
+      result.EndDate.ShouldBe(test_appointment.EndDate.ToString("yyyy-MM-ddTHH:mm:ssZ"));
       result.ContactId.ShouldBe(test_appointment.ContactId);
       result.UserId.ShouldBe(test_appointment.UserId);
       result.CreationTime.ToString().ShouldNotBeNull();
@@ -106,8 +106,8 @@ namespace WGU_ESS.Domain.Tests.Services
       result.Location.ShouldBe(test_appointment.Location);
       result.Url.ShouldBe(test_appointment.Url);
       result.NeedReminder.ShouldBe(test_appointment.NeedReminder);
-      result.StartDate.ShouldBe(test_appointment.StartDate);
-      result.EndDate.ShouldBe(test_appointment.EndDate);
+      result.StartDate.ShouldBe(test_appointment.StartDate.ToString("yyyy-MM-ddTHH:mm:ssZ"));
+      result.EndDate.ShouldBe(test_appointment.EndDate.ToString("yyyy-MM-ddTHH:mm:ssZ"));
       result.IsHidden.ShouldBe(test_appointment.IsHidden);
       result.ContactId.ShouldBe(test_appointment.ContactId);
       result.UserId.ShouldBe(test_appointment.UserId);

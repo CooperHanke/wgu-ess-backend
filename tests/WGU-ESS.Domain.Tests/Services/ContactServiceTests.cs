@@ -13,18 +13,20 @@ namespace WGU_ESS.Domain.Tests.Services
   public class ContactServiceTests : IClassFixture<SystemContextFactory>
   {
     private readonly ContactRepository _contactRepository;
+    private readonly AppointmentRepository _appointmentRepository;
     private readonly IContactMapper _contactMapper;
 
     public ContactServiceTests(SystemContextFactory systemContextFactory)
     {
       _contactRepository = new ContactRepository(systemContextFactory.ContextInstance);
+      _appointmentRepository = new AppointmentRepository(systemContextFactory.ContextInstance);
       _contactMapper = systemContextFactory.ContactMapper;
     }
 
     [Fact]
     public async Task get_contacts_should_return_correct_data()
     {
-      ContactService sut = new ContactService(_contactRepository, _contactMapper);
+      ContactService sut = new ContactService(_contactRepository, _appointmentRepository, _contactMapper);
       var result = await sut.GetContactsAsync();
       result.ShouldNotBeNull();
     }
@@ -33,7 +35,7 @@ namespace WGU_ESS.Domain.Tests.Services
     [InlineData("f161a106-dea4-4132-a015-f8a6a66cf0cd")]
     public async Task get_contact_by_id_should_return_correct_contact(string guid)
     {
-      ContactService sut = new ContactService(_contactRepository, _contactMapper);
+      ContactService sut = new ContactService(_contactRepository, _appointmentRepository, _contactMapper);
       var result = await sut.GetContactAsync(new GetContactRequest { Id = new Guid(guid)} );
       result.Id.ShouldBe(new Guid(guid));
       result.UserId.ShouldBe(new Guid("e61044cd-a73a-4786-97f9-e1570cde84c7"));
@@ -42,7 +44,7 @@ namespace WGU_ESS.Domain.Tests.Services
     [Fact]
     public void get_contact_should_throw_exception_with_null_id()
     {
-      ContactService sut = new ContactService(_contactRepository, _contactMapper);
+      ContactService sut = new ContactService(_contactRepository, _appointmentRepository, _contactMapper);
       sut.GetContactAsync(null).ShouldThrow<ArgumentNullException>();
     }
 
@@ -64,7 +66,7 @@ namespace WGU_ESS.Domain.Tests.Services
         UserId = new Guid("66da25ef-198e-40b4-997e-af986cabf880")
       };
 
-      ContactService sut = new ContactService(_contactRepository, _contactMapper);
+      ContactService sut = new ContactService(_contactRepository, _appointmentRepository, _contactMapper);
       var result = await sut.AddContactAsync(test_contact);
 
       result.Id.ToString().ShouldNotBeNull();
@@ -101,7 +103,7 @@ namespace WGU_ESS.Domain.Tests.Services
         UserId = new Guid("e61044cd-a73a-4786-97f9-e1570cde84c7")
       };
 
-      ContactService sut = new ContactService(_contactRepository, _contactMapper);
+      ContactService sut = new ContactService(_contactRepository, _appointmentRepository, _contactMapper);
       var result = await sut.EditContactAsync(test_contact);
 
       result.Id.ToString().ShouldNotBeNull();
