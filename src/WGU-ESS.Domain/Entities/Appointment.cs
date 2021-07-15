@@ -14,6 +14,7 @@ namespace WGU_ESS.Domain.Entities
     public DateTime EndDate { get; set; }
     public bool IsHidden { get; set; }
     public bool NeedReminder { get; set; }
+    public DateTime ReminderTime { get; set; }
     public DateTime CreationTime { get; set; }
     public DateTime ModificationTime { get; set; }
     // associates the appointment with a Contact

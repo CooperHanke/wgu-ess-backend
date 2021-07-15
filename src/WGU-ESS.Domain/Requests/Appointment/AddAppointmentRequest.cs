@@ -12,6 +12,7 @@ namespace WGU_ESS.Domain.Requests.Appointment
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
     public bool NeedReminder { get; set; }
+    public DateTime ReminderTime { get; set; }
     public Guid ContactId { get; set; }
     public Guid UserId { get; set; }
   }

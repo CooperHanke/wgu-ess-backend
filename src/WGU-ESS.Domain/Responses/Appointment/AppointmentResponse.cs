@@ -14,6 +14,7 @@ namespace WGU_ESS.Domain.Responses.Appointment
     public string EndDate { get; set; }
     public bool IsHidden { get; set; }
     public bool NeedReminder { get; set; }
+    public string ReminderTime { get; set; }
     public Guid ContactId { get; set; }
     public Guid UserId { get; set; }
     public string CreationTime { get; set; }
