@@ -19,7 +19,8 @@ namespace WGU_ESS.Domain.Extensions
       services
         .AddScoped<IUserService, UserService>()
         .AddScoped<IContactService, ContactService>()
-        .AddScoped<IAppointmentService, AppointmentService>();
+        .AddScoped<IAppointmentService, AppointmentService>()
+        .AddScoped<IPasswordService, PasswordService>();
       return services;
     }
   }
