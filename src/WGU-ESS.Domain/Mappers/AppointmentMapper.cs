@@ -19,6 +19,7 @@ namespace WGU_ESS.Domain.Mappers
         StartDate = request.StartDate,
         EndDate = request.EndDate,
         NeedReminder = request.NeedReminder,
+        ReminderTime = request.ReminderTime,
         ContactId = request.ContactId,
         UserId = request.UserId
       };
@@ -39,6 +40,7 @@ namespace WGU_ESS.Domain.Mappers
         StartDate = request.StartDate,
         EndDate = request.EndDate,
         NeedReminder = request.NeedReminder,
+        ReminderTime = request.ReminderTime,
         IsHidden = request.IsHidden,
         ContactId = request.ContactId,
         UserId = request.UserId
@@ -60,6 +62,7 @@ namespace WGU_ESS.Domain.Mappers
         StartDate = appointment.StartDate.ToString("yyyy-MM-ddTHH:mm:ssZ"),
         EndDate = appointment.EndDate.ToString("yyyy-MM-ddTHH:mm:ssZ"),
         NeedReminder = appointment.NeedReminder,
+        ReminderTime = appointment.ReminderTime.ToString("yyyy-MM-ddTHH:mm:ssZ"),
         IsHidden = appointment.IsHidden,
         CreationTime = appointment.CreationTime.ToString("yyyy-MM-ddTHH:mm:ssZ"),
         ModificationTime = appointment.ModificationTime.ToString("yyyy-MM-ddTHH:mm:ssZ"),
