@@ -62,7 +62,7 @@ namespace WGU_ESS.API.Controllers
           // if the username has changed, we need to get a user with the same username, and check the id
           // if the name is changed but id is different, we let the user know they need to pick a different name
           var existingWithName = await _userService.GetByUserNameAsyncForUniquenessCheck(request.UserName);
-          if (existingWithName.Id != null)
+          if (existingWithName.Id != null && existingWithName.Id != request.Id)
           {
             return BadRequest($"A user with username '{request.UserName}' already exists; please choose another username or revert username");
           }
